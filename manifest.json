@@ -1,0 +1,35 @@
+{
+   "action": {
+      "default_icon": {
+         "128": "icons/icon-128.png",
+         "16": "icons/icon-16.png",
+         "300": "icons/icon-300.png",
+         "48": "icons/icon-48.png"
+      },
+      "default_popup": "popup/popup.html"
+   },
+   "author": "Darkling Dark mode",
+   "background": {
+      "service_worker": "js/background.js"
+   },
+   "default_locale": "zh_CN",
+   "description": "__MSG_extShortDesc__",
+   "host_permissions": [ "\u003Call_urls>" ],
+   "icons": {
+      "128": "icons/icon-128.png",
+      "16": "icons/icon-16.png",
+      "300": "icons/icon-300.png",
+      "48": "icons/icon-48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqbtSEWpXK3CUwUWJHWA0UbI8rigyqlxmdmm4duQvaF4D60n2a3L1+mR/BiK+4wKFVW42/wNo3SyZnOmxq6LvIR2yhVS/TzXPWdU/CnGYaOvd76kKu7/Ge/k5kqahGaGwynsaGSld3tOYLUSu6taY4VTuUv0GVXAegNo4gv+QK8i3PawLoZRhv9OZrgRBU0HV1KGSc0nibwP78Un3tnpy+5okEj+IIVUThRQoh4e9pBKjVA45yLOUp5f1hxaksfVsCYoBp3Mg+MkrATVA91ol/oakt2zEyVe+VIRgHcZuvCwiv/KMEqGtoMoM8spHlGYmtzXkn74DnA56hGtgs2DPQwIDAQAB",
+   "manifest_version": 3,
+   "minimum_chrome_version": "102.0",
+   "name": "__MSG_extName__",
+   "permissions": [ "alarms", "contextMenus", "declarativeNetRequest", "scripting", "storage" ],
+   "update_url": "https://edge.microsoft.com/extensionwebstorebase/v1/crx",
+   "version": "4.0.7",
+   "web_accessible_resources": [ {
+      "matches": [ "\u003Call_urls>" ],
+      "resources": [ "js/proxy.js" ]
+   } ]
+}

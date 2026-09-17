@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>filter fallback fixture</title>
+<!-- localhost:8765 is cross-origin to 127.0.0.1:8765, so cssRules is unreadable and the
+     extension's own fetch gets a 403: the engine must fail to darken this page. -->
+<link rel="stylesheet" href="http://localhost:8765/blocked.css">
+<style>
+  body { margin: 0; font-family: system-ui, sans-serif; padding: 24px; }
+  h1 { color: #0a0a0a; }
+  p { color: #374151; }
+</style>
+</head>
+<body>
+  <h1>Filter fallback fixture</h1>
+  <p>All styling comes from a stylesheet the extension cannot access, so the dynamic theme
+     must fail and the darkness guard has to switch this page to the filter fallback.</p>
+</body>
+</html>

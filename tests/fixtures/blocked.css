@@ -1,0 +1,4 @@
+/* Served only to the browser's <link> request; the extension's fetch is refused with 403. */
+html:root, body:not(#never) { background-color: #ffffff !important; color: #111827; }
+body { min-height: 100vh; box-sizing: border-box; }
+h1 { border-bottom: 2px solid #e5e7eb; }

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>modern css fixture</title>
+<style>
+  /* Tailwind v4 style: everything lives inside cascade layers, palette in oklch(). */
+  @layer theme, base, components, utilities;
+  @layer theme {
+    :root, :host {
+      --color-white: #fff;
+      --color-gray-900: oklch(21% 0.034 264.665);
+      --color-gray-100: oklch(96.7% 0.003 264.542);
+      --color-blue-600: oklch(54.6% 0.245 262.881);
+    }
+  }
+  @layer base {
+    body { margin: 0; font-family: system-ui, sans-serif; background-color: var(--color-white); color: var(--color-gray-900); }
+  }
+  @layer utilities {
+    .bg-white { background-color: var(--color-white); }
+    .bg-gray-100 { background-color: var(--color-gray-100); }
+    .text-gray-900 { color: var(--color-gray-900); }
+    /* Tailwind "!" utilities: !important inside a layer beats any unlayered !important override. */
+    .\!text-gray-900 { color: var(--color-gray-900) !important; }
+    .\!bg-gray-100 { background-color: var(--color-gray-100) !important; }
+    .card { padding: 24px; border: 1px solid #e5e7eb; border-radius: 12px; margin: 16px; }
+    .p-4 { padding: 16px; }
+  }
+  /* Colours the engine's hand-written parser cannot read on its own. */
+  .oklch-box { background-color: oklch(98% 0.01 90); color: oklch(25% 0.05 260); padding: 16px; margin: 16px; }
+  .mix-box { background-color: color-mix(in srgb, white 92%, blue); color: color-mix(in srgb, black 80%, blue); padding: 16px; margin: 16px; }
+  .light-dark-box { background-color: light-dark(#fafafa, #111); color: light-dark(#222, #eee); padding: 16px; margin: 16px; }
+  /* CSS nesting, including declarations that follow a nested rule. */
+  .nest { background-color: #f8fafc; padding: 16px; margin: 16px;
+    & .inner { background-color: #ffffff; color: #0f172a; padding: 8px; }
+    color: #334155;
+  }
+  /* Container and scope rules. */
+  .container-host { container-type: inline-size; }
+  @container (min-width: 200px) {
+    .container-child { background-color: #fefce8; color: #1c1917; padding: 16px; margin: 16px; }
+  }
+  @scope (.scoped) {
+    .scoped-child { background-color: #fdf2f8; color: #111827; padding: 16px; margin: 16px; }
+  }
+  @supports (display: grid) {
+    .supports-box { background-color: #f0fdf4; color: #052e16; padding: 16px; margin: 16px; }
+  }
+  /* Real-world variable patterns: Tailwind v3 opacity vars, shadcn/ui hsl(var()), Tailwind v4 color-mix(var()). */
+  :root { --tw-bg-opacity: 1; --primary: 222.2 47.4% 11.2%; --primary-foreground: 210 40% 98%; --card: 0 0% 100%; }
+  .tw3-box { --tw-bg-opacity: 1; background-color: rgb(255 255 255 / var(--tw-bg-opacity)); color: rgb(17 24 39 / 1); padding: 16px; margin: 16px; }
+  .shadcn-card { background-color: hsl(var(--card)); color: hsl(var(--primary)); padding: 16px; margin: 16px; }
+  .mix-var-box { background-color: color-mix(in oklab, var(--color-white) 90%, transparent); color: color-mix(in oklab, var(--color-gray-900) 90%, transparent); padding: 16px; margin: 16px; }
+  .relative-box { background-color: rgb(from #f5f5f5 r g b); color: hsl(from #1f2937 h s l); padding: 16px; margin: 16px; }
+  /* Gradient text: the gradient paints the glyphs, so it must be lightened, not darkened. */
+  .gradient-text { background: linear-gradient(90deg, rgb(126, 142, 255) 0%, rgb(151, 36, 168) 50%, rgb(6, 19, 110) 100%) text; color: transparent; font-weight: 700; padding: 16px; margin: 16px; }
+</style>
+</head>
+<body>
+  <main class="bg-white text-gray-900 p-4">
+    <h1>Modern CSS fixture</h1>
+    <section class="card bg-gray-100"><p class="text-gray-900">Layered utility card. This paragraph must stay readable in dark mode.</p></section>
+    <section class="card !bg-gray-100"><p class="!text-gray-900">Layered !important utilities (Tailwind "!" prefix) must be overridden too.</p></section>
+    <div class="oklch-box">oklch() background and text.</div>
+    <div class="mix-box">color-mix() background and text.</div>
+    <div class="light-dark-box">light-dark() background and text.</div>
+    <div class="nest">Nested parent text<div class="inner">Nested child rule with &amp; selector.</div></div>
+    <div class="container-host"><div class="container-child">@container rule content.</div></div>
+    <div class="scoped"><div class="scoped-child">@scope rule content.</div></div>
+    <div class="supports-box">@supports rule content.</div>
+    <div class="tw3-box">Tailwind v3 rgb(255 255 255 / var(--tw-bg-opacity)).</div>
+    <div class="shadcn-card">shadcn/ui hsl(var(--card)) with hsl(var(--primary)) text.</div>
+    <div class="mix-var-box">Tailwind v4 color-mix(in oklab, var(--color-white) 90%, transparent).</div>
+    <div class="relative-box">Relative colour rgb(from #f5f5f5 r g b).</div>
+    <div class="gradient-text">Gradient text from a class rule (background-clip: text).</div>
+    <div style="background: linear-gradient(90deg, rgb(126, 142, 255) 0%, rgb(151, 36, 168) 50%, rgb(6, 19, 110) 100%) text; color: transparent; font-weight: 700; padding: 16px; margin: 16px;">Gradient text from an inline style (background-clip: text).</div>
+  </main>
+</body>
+</html>
